@@ -1,0 +1,83 @@
+name: Weekly schedule update
+
+on:
+  schedule:
+    - cron: "5 16 * * 0"   # Sundays 16:05 UTC = 18:05 Berlin (summer) / 17:05 (winter)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: weekly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      rc: ${{ steps.run.outputs.rc }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Fetch schedules and rewrite index.html
+        id: run
+        env:
+          TZ: Europe/Berlin
+        run: |
+          set +e
+          python3 scripts/update.py
+          rc=$?
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          echo "update.py exit code: $rc"
+
+      - name: Commit and push if index.html changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "index.html unchanged - nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Weekly schedule update $(TZ=Europe/Berlin date +%F)"
+          git push origin HEAD:main
+
+      - name: Mark run as failed if a studio could not be fetched
+        if: steps.run.outputs.rc != '0'
+        run: |
+          echo "::error::update.py exited with ${{ steps.run.outputs.rc }} - at least one studio failed; its previous entries were kept. See the log above."
+          exit 1
+
+  # Pushes made with GITHUB_TOKEN don't trigger other workflows, so deploy Pages here.
+  # Runs even if the update job was marked failed (the page still has the kept data).
+  deploy:
+    needs: update
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - name: Build site folder
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          touch _site/.nojekyll
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v5
