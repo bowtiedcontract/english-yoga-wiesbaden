@@ -1,54 +1,400 @@
-<!doctype html><html><head><meta charset="utf-8"><title>English Yoga near Wiesbaden</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f5f1ea">
+<title>English Yoga near Wiesbaden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:24px;color:#1d2330;background:#f6f7fb;max-width:1100px}
-h1{margin:0 0 4px;font-size:26px}.sub{color:#667;margin-bottom:18px;font-size:13px}
-h2{font-size:18px;margin:22px 0 8px;border-bottom:2px solid #d8dcea;padding-bottom:4px}
-table{border-collapse:collapse;width:100%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);font-size:13px}
-th{background:#2f3e63;color:#fff;text-align:left;padding:7px 9px}td{padding:7px 9px;border-top:1px solid #eceef5;vertical-align:top}
-.ok{color:#137a3a;font-weight:600}.wait{color:#b26a00;font-weight:600}.fav{background:#fff4c9}.muted{color:#889}
-</style></head><body><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
-<h1>English Yoga near Wiesbaden</h1>
-<div class="sub">Updated Sun 27 Sep 2026, 22:00 (Berlin time). Yoga schedules were taken from the studios' live Eversports calendars for 28 Sep – 11 Oct 2026. ★ = favorite.</div>
+:root{
+  --bg:#f5f1ea; --surface:#fffdf9; --ink:#2a2723; --muted:#5f5850; --line:#e7e0d4;
+  --sage:#4d6b57; --sage-soft:#e3ece4; --sage-ink:#2f4a39;
+  --clay:#9c4f2f; --clay-soft:#f7e6dc;
+  --gold:#8f6208; --gold-soft:#fbf1d6;
+  --radius:16px; --shadow:0 1px 2px rgba(60,45,30,.05),0 4px 14px rgba(60,45,30,.06);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+a{color:var(--sage-ink)}
+.wrap{max-width:760px;margin:0 auto;padding:28px 18px 60px}
+header h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(28px,6vw,38px);line-height:1.1;margin:0 0 6px;letter-spacing:-.01em}
+header p{margin:0;color:var(--muted);font-size:14px}
+.updated{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 
-<h2>Yoga studios</h2>
-<table><tr><th>Studio</th><th>Address</th><th>Phone</th><th>Email / booking</th><th>Prices</th></tr>
-<tr class="fav"><td><b>★ Balance Yoga – Studio Mainz</b></td><td>Holzhofstr. 3, 55116 Mainz (S-Bahn to Mainz Römisches Theater)</td><td>+49 6131 6036771</td><td>eversports.de/s/balance-mainz</td><td>Trial €12. Drop-in €19 (60 min) or €25 (75/90 min). Unlimited €89.90/mo (12 mo) or €99.90 flex. Urban Sports Club, ClassPass, Hansefit.</td></tr>
-<tr><td><b>Studio 85 – Biebrich</b></td><td>Rheingaustr. 85B, 65203 Wiesbaden</td><td>+49 1515 9184832</td><td>eversports.de/s/studio-85-biebrich</td><td>2 trial classes €29. Drop-in €19. 10-card €169. Urban Sports Club (M+), ClassPass, Wellhub, Hansefit.</td></tr>
-<tr><td><b>Studio 85 – Hochheim</b></td><td>Frankfurter Str. 75, 65239 Hochheim</td><td>+49 1515 9184832</td><td>eversports.de/s/studio-85-hochheim</td><td>Same as Biebrich. Unlimited memberships cover both studios.</td></tr>
-<tr><td><b>PRAXYS</b> (Yoga, Physio, TCM)</td><td>Rheinstr. 80, Wiesbaden</td><td>0611 53241570</td><td>info@praxyswi.de</td><td>About €18 per class. English not confirmed yet.</td></tr>
-<tr><td><b>Yogaplus Studio Mainz</b></td><td>Breite Str. 28, Mainz-Gonsenheim</td><td class="muted">not found</td><td>eversports.de/s/yogaplus-studio-mainz</td><td>Free trial. 10-card about €160. Memberships €59–99/mo.</td></tr>
-</table>
+/* Filters */
+.filters{margin:22px 0 10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 14px 10px;box-shadow:var(--shadow)}
+.frow{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+.frow + .frow{border-top:1px dashed var(--line)}
+.flabel{flex:0 0 74px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:7px;flex:1}
+.chip{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:14px;padding:6px 13px;border-radius:999px;cursor:pointer;line-height:1.3;transition:background .15s,border-color .15s,color .15s;min-height:34px}
+.chip:hover{border-color:#cfc5b4}
+.chip[aria-pressed="true"]{background:var(--sage);border-color:var(--sage);color:#fff}
+.chip.week small{display:block;font-size:11.5px;opacity:.8}
+.chip.week{text-align:left;padding:6px 15px}
+.chip.fav[aria-pressed="true"]{background:var(--gold);border-color:var(--gold)}
+.chip:focus-visible,.btn:focus-visible,summary:focus-visible{outline:3px solid #9bb8a3;outline-offset:2px}
+details.more{border-top:1px dashed var(--line);margin-top:2px}
+details.more summary{cursor:pointer;list-style:none;padding:10px 0 6px;font-size:14px;font-weight:600;color:var(--sage-ink)}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"▸ ";display:inline-block;width:1em}
+details.more[open] summary::before{content:"▾ "}
+details.more summary span{font-weight:500;color:var(--muted)}
+details.more .frow:first-of-type{border-top:0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 2px 6px}
+.count{font-weight:600;font-size:15px}
+.reset{appearance:none;background:none;border:0;font:inherit;font-size:14px;color:var(--clay);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px}
 
-<h2>English yoga classes, next two weeks</h2>
-<table><tr><th>Date</th><th>Time</th><th>Studio</th><th>Class</th><th>Level</th><th>Teacher</th></tr>
-<tr><td>Mon 28 Sep</td><td>20:00–21:30</td><td>Balance Mainz</td><td>Advanced Asana Flow (engl.)</td><td>Advanced</td><td>Taisiia R.</td></tr>
-<tr><td>Tue 29 Sep</td><td>10:00–11:15</td><td>Studio 85 Hochheim</td><td>Power &amp; Balance (ENG)</td><td>Intermediate</td><td>Ella / Andi / Anni</td></tr>
-<tr><td>Tue 29 Sep</td><td>18:30–19:30</td><td>PRAXYS</td><td>Vinyasa (English not confirmed yet)</td><td>–</td><td>–</td></tr>
-<tr><td>Tue 29 Sep</td><td>19:15–20:30</td><td>Studio 85 Biebrich</td><td>Basics II (DE/ENG)</td><td>Beginner</td><td>Anke</td></tr>
-<tr><td>Wed 30 Sep</td><td>10:00</td><td>Studio 85 Biebrich</td><td>Strength &amp; Balance Yoga (ENG)</td><td>–</td><td>Ella / Andi</td></tr>
-<tr><td>Wed 30 Sep</td><td>18:00</td><td>Yogaplus Mainz</td><td>Next Level Flow (engl.)</td><td>Advanced</td><td>Maja</td></tr>
-<tr><td>Thu 1 Oct</td><td>09:30–10:30</td><td>Studio 85 Hochheim</td><td>Mindful Flow (ENG)</td><td>All levels</td><td>Milena</td></tr>
-<tr><td>Thu 1 Oct</td><td>10:00</td><td>Studio 85 Biebrich</td><td>Yin &amp; Yang (DE/ENG)</td><td>–</td><td>Romea</td></tr>
-<tr><td>Thu 1 Oct</td><td>18:00–19:00</td><td>PRAXYS</td><td>Vinyasa (English not confirmed yet)</td><td>–</td><td>–</td></tr>
-<tr class="fav"><td>Thu 1 Oct</td><td>19:30–20:45</td><td>★ Balance Mainz</td><td>Vinyasa Yoga (engl.)</td><td>Intermediate</td><td>Anni A.</td></tr>
-<tr><td>Fri 2 Oct</td><td>09:30</td><td>Yogaplus Mainz</td><td>Flow &amp; Technik (engl.)</td><td>All levels</td><td>Maja</td></tr>
-<tr><td>Sat 3 Oct*</td><td>09:15</td><td>Balance Mainz</td><td>Rocket Yoga (engl.)</td><td>Advanced</td><td>Marina D.</td></tr>
-<tr><td>Sun 4 Oct</td><td>09:30</td><td>Studio 85 Biebrich</td><td>Heat &amp; Flow (ENG)</td><td>Intermediate</td><td>Bridget / Anni</td></tr>
-<tr><td>Sun 4 Oct</td><td>16:30</td><td>Yogaplus Mainz</td><td>Flow &amp; Restorative (engl.)</td><td>All levels</td><td>Maja</td></tr>
-<tr><td>Mon 5 Oct</td><td>20:00–21:30</td><td>Balance Mainz</td><td>Advanced Asana Flow (engl.)</td><td>Advanced</td><td>Taisiia R.</td></tr>
-<tr><td>Tue 6 Oct</td><td>10:00–11:15</td><td>Studio 85 Hochheim</td><td>Power &amp; Balance (ENG)</td><td>Intermediate</td><td>Ella / Andi / Anni</td></tr>
-<tr><td>Tue 6 Oct</td><td>18:30–19:30</td><td>PRAXYS</td><td>Vinyasa (English not confirmed yet)</td><td>–</td><td>–</td></tr>
-<tr><td>Tue 6 Oct</td><td>19:15–20:30</td><td>Studio 85 Biebrich</td><td>Basics II (DE/ENG)</td><td>Beginner</td><td>Anke</td></tr>
-<tr><td>Wed 7 Oct</td><td>10:00</td><td>Studio 85 Biebrich</td><td>Strength &amp; Balance Yoga (ENG)</td><td>–</td><td>Ella / Andi</td></tr>
-<tr><td>Wed 7 Oct</td><td>18:00</td><td>Yogaplus Mainz</td><td>Next Level Flow (engl.)</td><td>Advanced</td><td>Maja</td></tr>
-<tr><td>Thu 8 Oct</td><td>09:30–10:30</td><td>Studio 85 Hochheim</td><td>Mindful Flow (ENG)</td><td>All levels</td><td>Milena</td></tr>
-<tr><td>Thu 8 Oct</td><td>10:00</td><td>Studio 85 Biebrich</td><td>Yin &amp; Yang (DE/ENG)</td><td>–</td><td>Romea</td></tr>
-<tr><td>Thu 8 Oct</td><td>18:00–19:00</td><td>PRAXYS</td><td>Vinyasa (English not confirmed yet)</td><td>–</td><td>–</td></tr>
-<tr class="fav"><td>Thu 8 Oct</td><td>19:30–20:45</td><td>★ Balance Mainz</td><td>Vinyasa Yoga (engl.)</td><td>Intermediate</td><td>Anni A.</td></tr>
-<tr><td>Fri 9 Oct</td><td>09:30</td><td>Yogaplus Mainz</td><td>Flow &amp; Technik (engl.)</td><td>All levels</td><td>Maja</td></tr>
-<tr><td>Sat 10 Oct</td><td>09:15</td><td>Balance Mainz</td><td>Rocket Yoga (engl.)</td><td>Advanced</td><td>Marina D.</td></tr>
-<tr><td>Sun 11 Oct</td><td>09:30</td><td>Studio 85 Biebrich</td><td>Heat &amp; Flow (ENG)</td><td>Intermediate</td><td>Bridget / Anni</td></tr>
-<tr><td>Sun 11 Oct</td><td>16:30</td><td>Yogaplus Mainz</td><td>Flow &amp; Restorative (engl.)</td><td>All levels</td><td>Maja</td></tr>
-</table>
-<div class="sub" style="margin-top:8px">* Sat 3 Oct is German Unity Day (public holiday). Check that the class is still running before you go. Classes can be cancelled, so confirm on Eversports.</div>
-</body></html>
+/* Schedule */
+.day{margin-top:10px}
+.dayhead{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 80%,rgba(245,241,234,0));padding:12px 2px 8px;display:flex;align-items:baseline;gap:10px}
+.dayhead h2{margin:0;font-family:Fraunces,Georgia,serif;font-weight:500;font-size:20px}
+.dayhead span{font-size:13px;color:var(--muted)}
+.holiday{background:var(--clay-soft);color:#7a3a1f;border-radius:12px;padding:9px 12px;font-size:13.5px;margin:0 0 10px}
+.card{position:relative;display:grid;grid-template-columns:86px 1fr auto;gap:4px 14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow)}
+.card.isfav{border-color:#e6cf8f;background:linear-gradient(90deg,var(--gold-soft),var(--surface) 55%)}
+.card.isfav::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--gold)}
+.time{font-variant-numeric:tabular-nums;font-weight:600;font-size:17px;line-height:1.2}
+.time small{display:block;font-weight:400;font-size:13px;color:var(--muted)}
+.info h3{margin:0;font-size:16px;font-weight:600;line-height:1.3}
+.star{color:var(--gold);margin-right:4px}
+.meta{font-size:13.5px;color:var(--muted);margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.tag{font-size:12px;font-weight:500;padding:2px 9px;border-radius:999px;background:#f0ebe2;color:#4d463e}
+.lv-Beginner{background:#e2eef6;color:#1f4e6b}
+.lv-Intermediate{background:var(--sage-soft);color:var(--sage-ink)}
+.lv-Advanced{background:#f1e2ee;color:#6b2a5c}
+.lv-All{background:#ece8f7;color:#43387a}
+.lang-warn{background:var(--clay-soft);color:#7a3a1f}
+.actions{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.btn{display:inline-block;text-align:center;text-decoration:none;font-size:14px;font-weight:600;padding:8px 16px;border-radius:999px;background:var(--sage);color:#fff;white-space:nowrap}
+.btn:hover{background:var(--sage-ink)}
+.btn.ghost{background:#fff;color:var(--sage-ink);border:1px solid #c9d7cc}
+.empty{text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);padding:30px 16px;margin-top:14px}
+.note{font-size:13px;color:var(--muted);margin:22px 2px 0}
+
+/* Studios */
+details.studios{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+details.studios summary{cursor:pointer;list-style:none;padding:16px 18px;font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+details.studios summary::-webkit-details-marker{display:none}
+details.studios summary::after{content:"+";font-family:Inter,sans-serif;font-size:22px;color:var(--muted)}
+details.studios[open] summary::after{content:"–"}
+.studio{padding:14px 18px;border-top:1px solid var(--line)}
+.studio h3{margin:0 0 4px;font-size:16px}
+.studio p{margin:3px 0;font-size:14px;color:var(--muted)}
+.studio p b{color:var(--ink);font-weight:600}
+
+@media (max-width:560px){
+  .wrap{padding:20px 14px 48px}
+  .frow{flex-direction:column;gap:4px}
+  .flabel{padding-top:0;flex:none}
+  .card{grid-template-columns:64px 1fr;padding:13px 14px}
+  .actions{grid-column:1 / -1;flex-direction:row;margin-top:8px}
+  .actions .btn{flex:1}
+  .time{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>English Yoga near Wiesbaden</h1>
+    <p>Classes taught in English (or bilingual) at studios in Wiesbaden &amp; Mainz.</p>
+    <span class="updated" id="updated"></span>
+  </header>
+
+  <section class="filters" aria-label="Filters">
+    <div class="frow"><div class="flabel">Week</div><div class="chips" id="f-week"></div></div>
+    <div class="frow"><div class="flabel">When</div><div class="chips" id="f-time"></div></div>
+    <div class="frow"><div class="flabel">Quick</div><div class="chips" id="f-quick"></div></div>
+    <details class="more" id="more">
+      <summary>Studio &amp; level <span id="more-count"></span></summary>
+      <div class="frow"><div class="flabel">Studio</div><div class="chips" id="f-studio"></div></div>
+      <div class="frow"><div class="flabel">Level</div><div class="chips" id="f-level"></div></div>
+    </details>
+  </section>
+
+  <div class="bar">
+    <div class="count" id="count" aria-live="polite"></div>
+    <button class="reset" id="reset" type="button">Reset filters</button>
+  </div>
+
+  <main id="schedule"></main>
+
+  <p class="note">Schedules come from the studios' Eversports calendars and can change. Please confirm on Eversports (or with the studio) before you go.</p>
+
+  <details class="studios">
+    <summary>Studios &amp; prices</summary>
+    <div id="studios"></div>
+  </details>
+</div>
+
+<script>
+/* =====================================================================
+   DATA — the weekly update job replaces ONLY this block.
+   See UPDATING.md for the field format.
+   ===================================================================== */
+const LAST_UPDATED = "Sun 27 Sep 2026, 22:00 (Berlin time)";
+
+// Dates that get a warning banner (e.g. public holidays).
+const DAY_NOTES = {
+  "2026-10-03": "German Unity Day (public holiday) – classes may not run. Check before you go."
+};
+
+// Favorite classes: matched by studio + weekday (0=Sun … 6=Sat) + start + class name.
+const FAVORITES = [
+  { studio: "Balance Yoga Mainz", weekday: 4, start: "19:30", name: "Vinyasa Yoga (engl.)" }
+];
+
+const STUDIOS = [
+  { name: "Balance Yoga Mainz", fullName: "Balance Yoga – Studio Mainz",
+    address: "Holzhofstr. 3, 55116 Mainz (S-Bahn to Mainz Römisches Theater)",
+    phone: "+49 6131 6036771", email: "",
+    booking: "https://www.eversports.de/s/balance-mainz",
+    prices: "Trial €12. Drop-in €19 (60 min) or €25 (75/90 min). Unlimited €89.90/mo (12 mo) or €99.90 flex.",
+    passes: "Urban Sports Club, ClassPass, Hansefit" },
+  { name: "Studio 85 Biebrich", fullName: "Studio 85 – Biebrich",
+    address: "Rheingaustr. 85B, 65203 Wiesbaden",
+    phone: "+49 1515 9184832", email: "",
+    booking: "https://www.eversports.de/s/studio-85-biebrich",
+    prices: "2 trial classes €29. Drop-in €19. 10-card €169.",
+    passes: "Urban Sports Club (M+), ClassPass, Wellhub, Hansefit" },
+  { name: "Studio 85 Hochheim", fullName: "Studio 85 – Hochheim",
+    address: "Frankfurter Str. 75, 65239 Hochheim",
+    phone: "+49 1515 9184832", email: "",
+    booking: "https://www.eversports.de/s/studio-85-hochheim",
+    prices: "Same as Biebrich. Unlimited memberships cover both studios.",
+    passes: "Urban Sports Club (M+), ClassPass, Wellhub, Hansefit" },
+  { name: "PRAXYS", fullName: "PRAXYS (Yoga, Physio, TCM)",
+    address: "Rheinstr. 80, Wiesbaden",
+    phone: "+49 611 53241570", email: "info@praxyswi.de",
+    booking: "",
+    prices: "About €18 per class. English not confirmed yet.",
+    passes: "" },
+  { name: "Yogaplus Mainz", fullName: "Yogaplus Studio Mainz",
+    address: "Breite Str. 28, Mainz-Gonsenheim",
+    phone: "", email: "",
+    booking: "https://www.eversports.de/s/yogaplus-studio-mainz",
+    prices: "Free trial. 10-card about €160. Memberships €59–99/mo.",
+    passes: "" }
+];
+
+// date: YYYY-MM-DD, start/end: HH:MM (end "" if unknown), level/teacher "" if unknown.
+// lang: "ENG", "DE/ENG" or "English not confirmed".
+const CLASSES = [
+  { date:"2026-09-28", start:"20:00", end:"21:30", studio:"Balance Yoga Mainz", name:"Advanced Asana Flow (engl.)", level:"Advanced", teacher:"Taisiia R.", lang:"ENG" },
+  { date:"2026-09-29", start:"10:00", end:"11:15", studio:"Studio 85 Hochheim", name:"Power & Balance (ENG)", level:"Intermediate", teacher:"Ella / Andi / Anni", lang:"ENG" },
+  { date:"2026-09-29", start:"18:30", end:"19:30", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed" },
+  { date:"2026-09-29", start:"19:15", end:"20:30", studio:"Studio 85 Biebrich", name:"Basics II (DE/ENG)", level:"Beginner", teacher:"Anke", lang:"DE/ENG" },
+  { date:"2026-09-30", start:"10:00", end:"", studio:"Studio 85 Biebrich", name:"Strength & Balance Yoga (ENG)", level:"", teacher:"Ella / Andi", lang:"ENG" },
+  { date:"2026-09-30", start:"18:00", end:"", studio:"Yogaplus Mainz", name:"Next Level Flow (engl.)", level:"Advanced", teacher:"Maja", lang:"ENG" },
+  { date:"2026-10-01", start:"09:30", end:"10:30", studio:"Studio 85 Hochheim", name:"Mindful Flow (ENG)", level:"All levels", teacher:"Milena", lang:"ENG" },
+  { date:"2026-10-01", start:"10:00", end:"", studio:"Studio 85 Biebrich", name:"Yin & Yang (DE/ENG)", level:"", teacher:"Romea", lang:"DE/ENG" },
+  { date:"2026-10-01", start:"18:00", end:"19:00", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed" },
+  { date:"2026-10-01", start:"19:30", end:"20:45", studio:"Balance Yoga Mainz", name:"Vinyasa Yoga (engl.)", level:"Intermediate", teacher:"Anni A.", lang:"ENG" },
+  { date:"2026-10-02", start:"09:30", end:"", studio:"Yogaplus Mainz", name:"Flow & Technik (engl.)", level:"All levels", teacher:"Maja", lang:"ENG" },
+  { date:"2026-10-03", start:"09:15", end:"", studio:"Balance Yoga Mainz", name:"Rocket Yoga (engl.)", level:"Advanced", teacher:"Marina D.", lang:"ENG" },
+  { date:"2026-10-04", start:"09:30", end:"", studio:"Studio 85 Biebrich", name:"Heat & Flow (ENG)", level:"Intermediate", teacher:"Bridget / Anni", lang:"ENG" },
+  { date:"2026-10-04", start:"16:30", end:"", studio:"Yogaplus Mainz", name:"Flow & Restorative (engl.)", level:"All levels", teacher:"Maja", lang:"ENG" },
+  { date:"2026-10-05", start:"20:00", end:"21:30", studio:"Balance Yoga Mainz", name:"Advanced Asana Flow (engl.)", level:"Advanced", teacher:"Taisiia R.", lang:"ENG" },
+  { date:"2026-10-06", start:"10:00", end:"11:15", studio:"Studio 85 Hochheim", name:"Power & Balance (ENG)", level:"Intermediate", teacher:"Ella / Andi / Anni", lang:"ENG" },
+  { date:"2026-10-06", start:"18:30", end:"19:30", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed" },
+  { date:"2026-10-06", start:"19:15", end:"20:30", studio:"Studio 85 Biebrich", name:"Basics II (DE/ENG)", level:"Beginner", teacher:"Anke", lang:"DE/ENG" },
+  { date:"2026-10-07", start:"10:00", end:"", studio:"Studio 85 Biebrich", name:"Strength & Balance Yoga (ENG)", level:"", teacher:"Ella / Andi", lang:"ENG" },
+  { date:"2026-10-07", start:"18:00", end:"", studio:"Yogaplus Mainz", name:"Next Level Flow (engl.)", level:"Advanced", teacher:"Maja", lang:"ENG" },
+  { date:"2026-10-08", start:"09:30", end:"10:30", studio:"Studio 85 Hochheim", name:"Mindful Flow (ENG)", level:"All levels", teacher:"Milena", lang:"ENG" },
+  { date:"2026-10-08", start:"10:00", end:"", studio:"Studio 85 Biebrich", name:"Yin & Yang (DE/ENG)", level:"", teacher:"Romea", lang:"DE/ENG" },
+  { date:"2026-10-08", start:"18:00", end:"19:00", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed" },
+  { date:"2026-10-08", start:"19:30", end:"20:45", studio:"Balance Yoga Mainz", name:"Vinyasa Yoga (engl.)", level:"Intermediate", teacher:"Anni A.", lang:"ENG" },
+  { date:"2026-10-09", start:"09:30", end:"", studio:"Yogaplus Mainz", name:"Flow & Technik (engl.)", level:"All levels", teacher:"Maja", lang:"ENG" },
+  { date:"2026-10-10", start:"09:15", end:"", studio:"Balance Yoga Mainz", name:"Rocket Yoga (engl.)", level:"Advanced", teacher:"Marina D.", lang:"ENG" },
+  { date:"2026-10-11", start:"09:30", end:"", studio:"Studio 85 Biebrich", name:"Heat & Flow (ENG)", level:"Intermediate", teacher:"Bridget / Anni", lang:"ENG" },
+  { date:"2026-10-11", start:"16:30", end:"", studio:"Yogaplus Mainz", name:"Flow & Restorative (engl.)", level:"All levels", teacher:"Maja", lang:"ENG" }
+];
+/* ======================== END OF DATA ================================ */
+
+(function () {
+  "use strict";
+  const STORE_KEY = "englishYogaFilters.v1";
+  const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const DOW_LONG = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const TIMES = [
+    { id:"morning", label:"Morning" },
+    { id:"afternoon", label:"Afternoon" },
+    { id:"evening", label:"Evening" },
+    { id:"weekend", label:"Weekend" }
+  ];
+  const LEVEL_ORDER = ["Beginner","Intermediate","Advanced","All levels","Not stated"];
+
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const parseDate = (iso) => { const [y,m,d] = iso.split("-").map(Number); return new Date(y, m-1, d); };
+  const isoOf = (d) => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  const mondayOf = (d) => { const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() - ((x.getDay()+6)%7)); return x; };
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+  const mins = (hhmm) => { const [h,m] = hhmm.split(":").map(Number); return h*60+m; };
+  const levelOf = (c) => c.level || "Not stated";
+  const studioBy = Object.fromEntries(STUDIOS.map(s => [s.name, s]));
+  const telOf = (p) => "tel:" + p.replace(/[^\d+]/g, "");
+  const isFav = (c) => FAVORITES.some(f => f.studio === c.studio && f.start === c.start && f.name === c.name && parseDate(c.date).getDay() === f.weekday);
+  const unconfirmed = (c) => /not confirmed/i.test(c.lang);
+
+  function timeBuckets(c) {
+    const b = [], m = mins(c.start), dow = parseDate(c.date).getDay();
+    if (m < 720) b.push("morning"); else if (m < 1020) b.push("afternoon"); else b.push("evening");
+    if (dow === 0 || dow === 6) b.push("weekend");
+    return b;
+  }
+
+  // ---- Weeks (Monday-based) ----
+  const weekStarts = [...new Set(CLASSES.map(c => isoOf(mondayOf(parseDate(c.date)))))].sort();
+  const todayMon = isoOf(mondayOf(new Date()));
+  // "This week" = the current week, or the first data week if today is before the data.
+  const anchor = weekStarts.length && todayMon < weekStarts[0] ? weekStarts[0] : todayMon;
+  const nextAnchor = isoOf(addDays(parseDate(anchor), 7));
+  const fmtShort = (d) => d.getDate() + " " + MON[d.getMonth()];
+  function weekLabel(ws) {
+    const s = parseDate(ws), e = addDays(s, 6);
+    const range = s.getMonth() === e.getMonth() ? s.getDate() + "–" + fmtShort(e) : fmtShort(s) + " – " + fmtShort(e);
+    const name = ws === anchor ? "This week" : ws === nextAnchor ? "Next week" : "Week of " + fmtShort(s);
+    return { name, range };
+  }
+  // Only show weeks from the anchor on (past weeks are hidden); keep all if none remain.
+  let visibleWeeks = weekStarts.filter(w => w >= anchor);
+  if (!visibleWeeks.length) visibleWeeks = weekStarts.slice(-1);
+
+  // ---- State ----
+  const defaults = () => ({ week: visibleWeeks[0] || "", times: [], studios: [], levels: [], fav: false, hideUnconfirmed: false });
+  let state = defaults();
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if (saved && typeof saved === "object") {
+      state = Object.assign(defaults(), saved);
+      if (!visibleWeeks.includes(state.week)) state.week = visibleWeeks[0] || "";
+      state.studios = (state.studios || []).filter(s => studioBy[s]);
+    }
+  } catch (e) { /* ignore */ }
+  const save = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} };
+
+  // ---- Chips ----
+  function chip(label, pressed, onClick, extraClass, html) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (extraClass ? " " + extraClass : "");
+    b.setAttribute("aria-pressed", pressed ? "true" : "false");
+    if (html) b.innerHTML = html; else b.textContent = label;
+    b.addEventListener("click", onClick);
+    return b;
+  }
+  const toggleIn = (arr, v) => arr.includes(v) ? arr.filter(x => x !== v) : arr.concat(v);
+
+  function renderFilters() {
+    const w = $("f-week"); w.innerHTML = "";
+    visibleWeeks.forEach(ws => {
+      const l = weekLabel(ws);
+      w.appendChild(chip(l.name, state.week === ws, () => { state.week = ws; update(); }, "week",
+        esc(l.name) + "<small>" + esc(l.range) + "</small>"));
+    });
+    const t = $("f-time"); t.innerHTML = "";
+    TIMES.forEach(x => t.appendChild(chip(x.label, state.times.includes(x.id), () => { state.times = toggleIn(state.times, x.id); update(); })));
+    const s = $("f-studio"); s.innerHTML = "";
+    STUDIOS.filter(st => CLASSES.some(c => c.studio === st.name)).forEach(st =>
+      s.appendChild(chip(st.name, state.studios.includes(st.name), () => { state.studios = toggleIn(state.studios, st.name); update(); })));
+    const lv = $("f-level"); lv.innerHTML = "";
+    const present = new Set(CLASSES.map(levelOf));
+    LEVEL_ORDER.concat([...present].filter(x => !LEVEL_ORDER.includes(x))).filter(x => present.has(x)).forEach(x =>
+      lv.appendChild(chip(x, state.levels.includes(x), () => { state.levels = toggleIn(state.levels, x); update(); })));
+    const q = $("f-quick"); q.innerHTML = "";
+    q.appendChild(chip("", state.fav, () => { state.fav = !state.fav; update(); }, "fav", "★ Favorites"));
+    q.appendChild(chip("Hide unconfirmed English", state.hideUnconfirmed, () => { state.hideUnconfirmed = !state.hideUnconfirmed; update(); }));
+  }
+
+  // ---- Schedule ----
+  function matches(c) {
+    if (state.week && isoOf(mondayOf(parseDate(c.date))) !== state.week) return false;
+    if (state.times.length && !timeBuckets(c).some(b => state.times.includes(b))) return false;
+    if (state.studios.length && !state.studios.includes(c.studio)) return false;
+    if (state.levels.length && !state.levels.includes(levelOf(c))) return false;
+    if (state.fav && !isFav(c)) return false;
+    if (state.hideUnconfirmed && unconfirmed(c)) return false;
+    return true;
+  }
+
+  function actionsHtml(st) {
+    if (!st) return "";
+    if (st.booking) return '<a class="btn" href="' + esc(st.booking) + '" target="_blank" rel="noopener">Book</a>';
+    let h = "";
+    if (st.email) h += '<a class="btn" href="mailto:' + esc(st.email) + '">Email</a>';
+    if (st.phone) h += '<a class="btn ghost" href="' + telOf(st.phone) + '">Call</a>';
+    return h;
+  }
+
+  function cardHtml(c) {
+    const st = studioBy[c.studio], fav = isFav(c), lvl = levelOf(c);
+    const lvClass = c.level ? "lv-" + c.level.split(" ")[0] : "";
+    const meta = [esc(c.studio)];
+    if (c.teacher) meta.push(esc(c.teacher));
+    return '<article class="card' + (fav ? " isfav" : "") + '">' +
+      '<div class="time">' + esc(c.start) + (c.end ? "<small>– " + esc(c.end) + "</small>" : "") + "</div>" +
+      '<div class="info"><h3>' + (fav ? '<span class="star" aria-label="Favorite">★</span>' : "") + esc(c.name) + "</h3>" +
+      '<div class="meta">' + meta.join(" · ") + "</div>" +
+      '<div class="tags">' + (c.level ? '<span class="tag ' + lvClass + '">' + esc(lvl) + "</span>" : '<span class="tag">Level not stated</span>') +
+      '<span class="tag' + (unconfirmed(c) ? " lang-warn" : "") + '">' + esc(c.lang) + "</span></div></div>" +
+      '<div class="actions">' + actionsHtml(st) + "</div></article>";
+  }
+
+  function renderSchedule() {
+    const list = CLASSES.filter(matches).sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
+    $("count").textContent = list.length === 1 ? "1 class" : list.length + " classes";
+    const out = $("schedule");
+    if (!list.length) {
+      out.innerHTML = '<div class="empty">No classes match these filters.<br>Try removing a filter or tap <b>Reset filters</b>.</div>';
+      return;
+    }
+    const byDay = {};
+    list.forEach(c => (byDay[c.date] = byDay[c.date] || []).push(c));
+    const todayIso = isoOf(new Date());
+    out.innerHTML = Object.keys(byDay).map(iso => {
+      const d = parseDate(iso);
+      const sub = iso === todayIso ? "Today" : iso === isoOf(addDays(new Date(), 1)) ? "Tomorrow" : "";
+      return '<section class="day"><div class="dayhead"><h2>' + DOW_LONG[d.getDay()] + " " + fmtShort(d) + "</h2>" +
+        (sub ? "<span>" + sub + "</span>" : "") + "</div>" +
+        (DAY_NOTES[iso] ? '<div class="holiday">⚠︎ ' + esc(DAY_NOTES[iso]) + "</div>" : "") +
+        byDay[iso].map(cardHtml).join("") + "</section>";
+    }).join("");
+  }
+
+  function renderStudios() {
+    $("studios").innerHTML = STUDIOS.map(s => {
+      const rows = [];
+      rows.push("<p>" + esc(s.address) + "</p>");
+      rows.push("<p><b>Phone:</b> " + (s.phone ? '<a href="' + telOf(s.phone) + '">' + esc(s.phone) + "</a>" : "not found") + "</p>");
+      if (s.email) rows.push('<p><b>Email:</b> <a href="mailto:' + esc(s.email) + '">' + esc(s.email) + "</a></p>");
+      if (s.booking) rows.push('<p><b>Booking:</b> <a href="' + esc(s.booking) + '" target="_blank" rel="noopener">' + esc(s.booking.replace(/^https:\/\/www\./, "")) + "</a></p>");
+      rows.push("<p><b>Prices:</b> " + esc(s.prices) + "</p>");
+      if (s.passes) rows.push("<p><b>Passes:</b> " + esc(s.passes) + "</p>");
+      return '<div class="studio"><h3>' + esc(s.fullName) + "</h3>" + rows.join("") + "</div>";
+    }).join("");
+  }
+
+  function update() {
+    save(); renderFilters(); renderSchedule();
+    const n = state.studios.length + state.levels.length;
+    $("more-count").textContent = n ? "(" + n + " selected)" : "";
+  }
+
+  $("reset").addEventListener("click", () => { state = defaults(); update(); });
+  $("updated").textContent = "Last updated " + LAST_UPDATED;
+  renderStudios();
+  if (state.studios.length || state.levels.length) $("more").open = true;
+  update();
+})();
+</script>
+</body>
+</html>
