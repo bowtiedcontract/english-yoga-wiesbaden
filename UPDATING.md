@@ -18,7 +18,7 @@ Replace only what is between those markers. Leave the rendering code below untou
 2. **`CLASSES`**: one object per class, for the next two weeks (Monday to Sunday):
    ```js
    { date:"2026-10-05", start:"20:00", end:"21:30", studio:"Balance Yoga Mainz",
-     name:"Advanced Asana Flow (engl.)", level:"Advanced", teacher:"Taisiia R.", lang:"ENG" }
+     name:"Advanced Asana Flow (engl.)", level:"Advanced", teacher:"Taisiia R.", lang:"ENG", type:"Yoga" }
    ```
    - `date`: ISO `YYYY-MM-DD`. `start`/`end`: 24h `HH:MM`. Use `end:""` if unknown.
    - `studio`: must exactly match a `name` in `STUDIOS` (this is how the Book button is linked).
@@ -26,6 +26,9 @@ Replace only what is between those markers. Leave the rendering code below untou
    - `teacher`: `""` if unknown.
    - `lang`: `"ENG"`, `"DE/ENG"`, or `"English not confirmed"`. Anything containing
      "not confirmed" is hidden by the *Hide unconfirmed English* toggle.
+   - `type`: `"Yoga"`, `"Pilates"`, `"Reformer Pilates"` or `"Strength"` (e.g. Fit Flow, Sculpt).
+     Non-yoga classes are hidden while the *Yoga only* chip is on, which is the default. If `type` is missing, the class counts as Yoga.
+   - Optional `cancelled:true` shows the class struck through with a "Cancelled" tag.
    - Order doesn't matter. The page sorts by date and time.
 3. **`STUDIOS`**: only change this when a studio's details change. Fields are `name` (short, used in
    filters/cards), `fullName`, `address`, `phone` (`""` if unknown), `email`, `booking` (Eversports URL,
@@ -35,6 +38,13 @@ Replace only what is between those markers. Leave the rendering code below untou
    Remove dates that are in the past.
 5. **`FAVORITES`**: matched by `studio` + `weekday` (0=Sun … 6=Sat) + `start` + `name`.
    These get the ★ highlight and show up under the *Favorites* filter.
+
+## Where the data comes from
+
+- **Studio 85 (Biebrich and Hochheim)**: the two locations use separate Eversports accounts and separate
+  schedule widgets (Biebrich `5fed6e2f-032a-437d-a211-2ad05afaa886`, Hochheim `3a5afe23-23fc-411a-af3d-22e3b116e422`).
+  Include every class with ENG / DE/ENG in its title or English noted in its description.
+- **Balance Yoga Mainz, Yogaplus**: their Eversports calendars. **PRAXYS**: praxyswi.de.
 
 ## Rules
 
