@@ -2,8 +2,12 @@
 """Weekly updater for the English yoga schedule (index.html).
 
 Fetches the next two weeks of sessions from the public Eversports schedule-widget
-feeds, keeps only classes whose title marks them as English, and rewrites the
-DAY_NOTES + CLASSES data (and LAST_UPDATED) inside the DATA block of index.html.
+feeds, keeps English/bilingual classes, and rewrites the DAY_NOTES + CLASSES data
+(and LAST_UPDATED) inside the DATA block of index.html.
+
+Most studios are filtered by an English marker in the title. Little Big Ganesha's
+titles are not marked, so that studio keeps only the bilingual slots listed in
+SOURCES (and still drops workshops, retreats, and medical appointments).
 
 Python 3.9+ standard library only.
 
@@ -38,6 +42,14 @@ UA = "Mozilla/5.0 (compatible; english-yoga-wiesbaden-updater/1.0)"
 # (a widget can cover several venues of one company, so we filter by venue).
 # Find ids for a new studio with:  python3 scripts/update.py --discover <eversports-slug>
 # ---------------------------------------------------------------------------
+# Optional per studio:
+#   slots — weekday (0=Mon … 6=Sun) + start + activity-group names to keep when the
+#           feed does not write ENG / bilingual into the title. Other classes,
+#           workshops and retreats are dropped. A regular class whose title is
+#           explicitly English is still kept.
+#   slot_lang — lang written onto slot matches. Defaults to "DE/ENG".
+#   skip_categories — activity-group categories that are never classes for this studio
+#           (workshops, retreats, teacher training, online, prevention courses).
 SOURCES = [
     {"name": "Studio 85 Hochheim", "widget": "3a5afe23-23fc-411a-af3d-22e3b116e422",
      "venue": "f5d32ccd-4db9-4a14-9281-d1b9db4e3654"},
@@ -47,6 +59,20 @@ SOURCES = [
      "venue": "5f3b1acc-69e4-11e8-bdc6-02bd505aa7b2"},
     {"name": "Yogaplus Mainz", "widget": "fbd65457-f905-4c14-ba1d-d49b397cb90c",
      "venue": "40bfbce8-4d02-4b47-a73b-8ed21884f732"},
+    # Titles are not marked English. Holger confirmed these recurring slots are
+    # bilingual / English-friendly. Thursday 19:30 is Yoga Basic on the feed;
+    # Yoga Intermediate at the same time is kept too if it is published.
+    {"name": "Little Big Ganesha", "widget": "6778be3b-3ae8-4e75-9463-e861a34ed10f",
+     "venue": "88d4711f-692c-49af-9580-3384d5b4c791",
+     "slot_lang": "DE/ENG",
+     "skip_categories": ["Workshop", "Event", "Retreats", "Ausbildungen", "Online", "Präventionskurs"],
+     "slots": [
+         {"weekday": 2, "start": "18:00", "names": ["Yoga Intermediate"]},
+         {"weekday": 3, "start": "07:30", "names": ["Yoga Open"]},
+         {"weekday": 3, "start": "19:30", "names": ["Yoga Basic", "Yoga Intermediate"]},
+         {"weekday": 4, "start": "18:00", "names": ["Intermediate - Start into the weekend"]},
+         {"weekday": 6, "start": "11:00", "names": ["Yoga Intermediate"]},
+     ]},
 ]
 
 # Studios without a feed: fixed weekly template (weekday 0=Mon ... 6=Sun).
@@ -74,6 +100,10 @@ HOLIDAY_TEXT = "{name} (public holiday) – classes may not run. Check before yo
 
 ENGLISH_RE = re.compile(r"\bENG\b|english|\bengl\b\.?|DE\s*/\s*ENG|bilingual", re.I)
 BILINGUAL_RE = re.compile(r"DE\s*/\s*ENG|bilingual", re.I)
+# Never publish medical or personal appointments, even if a title would otherwise match.
+MEDICAL_RE = re.compile(
+    r"ärzt|arzt|medizinisch|sprechstunde|heilpraktiker|physiotherapie|\bphysio\b",
+    re.I)
 LEVELS = {"BEGINNER": "Beginner", "INTERMEDIATE": "Intermediate", "ADVANCED": "Advanced",
           "PROFESSIONAL": "Advanced", "ALL": "All levels"}
 
@@ -186,6 +216,58 @@ def to_entry(n, studio):
     if n.get("isCancelled"):
         entry["cancelled"] = True
     return entry, raw
+
+
+def _blob(*parts):
+    return " ".join(p for p in parts if p)
+
+
+def is_medical(n, raw):
+    g = n.get("activityGroup") or {}
+    cat = ((g.get("category") or {}).get("name") or "")
+    return bool(MEDICAL_RE.search(_blob(raw, g.get("name") or "", cat)))
+
+
+def category_skipped(src, n):
+    skip = {c.casefold() for c in src.get("skip_categories") or []}
+    if not skip:
+        return False
+    cat = (((n.get("activityGroup") or {}).get("category") or {}).get("name") or "").strip().casefold()
+    return cat in skip
+
+
+def slot_match(src, entry, group_name):
+    """Return the matching slot, or None. Studios without slots never match here."""
+    wd = dt.date.fromisoformat(entry["date"]).weekday()  # 0=Mon … 6=Sun
+    for slot in src.get("slots") or []:
+        if slot["weekday"] != wd or slot["start"] != entry["start"]:
+            continue
+        names = slot.get("names")
+        if not names or group_name in names:
+            return slot
+    return None
+
+
+def accept_session(src, n, entry, raw):
+    """True if this session belongs on the English/bilingual page.
+
+    Studios without `slots` keep the title filter (ENG / English / bilingual).
+    A studio with `slots` keeps those confirmed bilingual classes, plus any
+    regular class whose title is explicitly marked English. Medical
+    appointments are always rejected.
+    """
+    if is_medical(n, raw):
+        return False
+    group_name = ((n.get("activityGroup") or {}).get("name") or "").strip()
+    if src.get("slots"):
+        if category_skipped(src, n):
+            return False
+        if slot_match(src, entry, group_name):
+            if not ENGLISH_RE.search(raw):
+                entry["lang"] = src.get("slot_lang", "DE/ENG")
+            return True
+        return bool(ENGLISH_RE.search(raw) or ENGLISH_RE.search(group_name))
+    return bool(ENGLISH_RE.search(raw))
 
 
 # ---------------------------------------------------------------------------
@@ -305,9 +387,12 @@ def main():
             got = []
             for n in sessions:
                 entry, raw = to_entry(n, src["name"])
-                if ENGLISH_RE.search(raw):
+                if accept_session(src, n, entry, raw):
                     got.append(entry)
-            print(f"  {src['name']}: {len(sessions)} sessions, {len(got)} English")
+            if src.get("slots") and not got and prev:
+                raise RuntimeError("no bilingual classes matched the slot list (previously had entries)")
+            label = "bilingual" if src.get("slots") else "English"
+            print(f"  {src['name']}: {len(sessions)} sessions, {len(got)} {label}")
             classes += got
         except Exception as e:  # keep previous data for this studio
             failed.append(src["name"])
