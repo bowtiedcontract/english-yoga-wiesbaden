@@ -142,7 +142,7 @@ details.studios[open] summary::after{content:"–"}
    DATA — the weekly update job replaces ONLY this block.
    See UPDATING.md for the field format.
    ===================================================================== */
-const LAST_UPDATED = "Sun 18 Oct 2026, 20:28 (Berlin time)";
+const LAST_UPDATED = "Sun 25 Oct 2026, 19:44 (Berlin time)";
 
 // Dates that get a warning banner (e.g. public holidays).
 const DAY_NOTES = {
@@ -192,35 +192,6 @@ const STUDIOS = [
 // type: "Yoga", "Pilates", "Reformer Pilates" or "Strength" (non-yoga is hidden while "Yoga only" is on).
 // Optional: cancelled:true shows the class struck through with a "Cancelled" tag.
 const CLASSES = [
-  { date:"2026-10-19", start:"17:00", end:"17:50", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Strength" },
-  { date:"2026-10-19", start:"18:00", end:"18:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"Tasha", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-19", start:"18:00", end:"19:00", studio:"Studio 85 Hochheim", name:"Pilates: Power (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Pilates" },
-  { date:"2026-10-19", start:"19:00", end:"19:50", studio:"Studio 85 Biebrich", name:"Reformer: Align (ENG)", level:"All levels", teacher:"Tasha", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-19", start:"20:00", end:"21:30", studio:"Balance Yoga Mainz", name:"Advanced Asana Flow (engl.)", level:"Advanced", teacher:"Taisiia R.", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-20", start:"10:00", end:"11:15", studio:"Studio 85 Hochheim", name:"Power & Balance (ENG)", level:"Intermediate", teacher:"Andi", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-20", start:"18:30", end:"19:30", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed", type:"Yoga" },
-  { date:"2026-10-20", start:"19:15", end:"20:30", studio:"Studio 85 Biebrich", name:"Basics II (DE/ENG)", level:"Beginner", teacher:"Anke", lang:"DE/ENG", type:"Yoga" },
-  { date:"2026-10-21", start:"10:00", end:"11:15", studio:"Studio 85 Biebrich", name:"Strength & Balance Yoga (ENG)", level:"All levels", teacher:"Milena", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-21", start:"18:00", end:"19:15", studio:"Yogaplus Mainz", name:"Next Level Flow (engl.)", level:"Advanced", teacher:"Maja", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-22", start:"08:00", end:"09:00", studio:"Studio 85 Hochheim", name:"Pilates: Power (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Pilates" },
-  { date:"2026-10-22", start:"09:30", end:"10:30", studio:"Studio 85 Hochheim", name:"Mindful Flow (ENG)", level:"All levels", teacher:"Milena", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-22", start:"10:00", end:"11:30", studio:"Studio 85 Biebrich", name:"Yin & Yang (DE/ENG)", level:"All levels", teacher:"Laura Muenzel", lang:"DE/ENG", type:"Yoga" },
-  { date:"2026-10-22", start:"17:00", end:"18:15", studio:"Studio 85 Biebrich", name:"Mindful Flow (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-22", start:"18:00", end:"19:00", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed", type:"Yoga" },
-  { date:"2026-10-22", start:"19:30", end:"20:45", studio:"Balance Yoga Mainz", name:"Vinyasa Yoga (engl.)", level:"Intermediate", teacher:"Anni A.", lang:"ENG", type:"Yoga", cancelled:true },
-  { date:"2026-10-23", start:"09:30", end:"10:30", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Strength" },
-  { date:"2026-10-23", start:"09:30", end:"11:00", studio:"Yogaplus Mainz", name:"Flow & Technik (engl.)", level:"All levels", teacher:"Maja", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-23", start:"18:00", end:"18:50", studio:"Balance Yoga Mainz", name:"Full Body Reformer (engl.)", level:"", teacher:"Alina H.", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-24", start:"08:30", end:"09:30", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Strength" },
-  { date:"2026-10-24", start:"09:00", end:"09:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-24", start:"09:15", end:"10:45", studio:"Balance Yoga Mainz", name:"Rocket Yoga (engl.)", level:"Advanced", teacher:"Alicia Su.", lang:"ENG", type:"Yoga", cancelled:true },
-  { date:"2026-10-24", start:"10:00", end:"10:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-24", start:"10:00", end:"11:00", studio:"Studio 85 Hochheim", name:"Pilates: Align (ENG)", level:"All levels", teacher:"Milena", lang:"ENG", type:"Pilates" },
-  { date:"2026-10-25", start:"09:30", end:"10:45", studio:"Studio 85 Biebrich", name:"Heat & Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Yoga" },
-  { date:"2026-10-25", start:"10:00", end:"10:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-25", start:"11:00", end:"11:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-25", start:"15:00", end:"16:00", studio:"Studio 85 Biebrich", name:"Strength: Sculpt (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Strength" },
-  { date:"2026-10-25", start:"16:30", end:"18:00", studio:"Yogaplus Mainz", name:"Flow & Restorative (engl.)", level:"All levels", teacher:"Maja", lang:"ENG", type:"Yoga" },
   { date:"2026-10-26", start:"17:00", end:"17:50", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Alexandra", lang:"ENG", type:"Strength" },
   { date:"2026-10-26", start:"18:00", end:"18:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"Tasha", lang:"ENG", type:"Reformer Pilates" },
   { date:"2026-10-26", start:"18:00", end:"19:00", studio:"Studio 85 Hochheim", name:"Pilates: Power (ENG)", level:"Intermediate", teacher:"Alexandra", lang:"ENG", type:"Pilates" },
@@ -241,13 +212,36 @@ const CLASSES = [
   { date:"2026-10-30", start:"18:00", end:"18:50", studio:"Balance Yoga Mainz", name:"Full Body Reformer (engl.)", level:"", teacher:"Alina H.", lang:"ENG", type:"Reformer Pilates" },
   { date:"2026-10-31", start:"08:30", end:"09:30", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Strength" },
   { date:"2026-10-31", start:"09:00", end:"09:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-10-31", start:"09:15", end:"10:45", studio:"Balance Yoga Mainz", name:"Rocket Yoga (engl.)", level:"Advanced", teacher:"Marina D.", lang:"ENG", type:"Yoga" },
+  { date:"2026-10-31", start:"09:15", end:"10:45", studio:"Balance Yoga Mainz", name:"Rocket Yoga (engl.)", level:"Advanced", teacher:"Marina D.", lang:"ENG", type:"Yoga", cancelled:true },
   { date:"2026-10-31", start:"10:00", end:"10:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
   { date:"2026-10-31", start:"10:00", end:"11:00", studio:"Studio 85 Hochheim", name:"Pilates: Align (ENG)", level:"All levels", teacher:"Milena", lang:"ENG", type:"Pilates" },
   { date:"2026-11-01", start:"09:30", end:"10:45", studio:"Studio 85 Biebrich", name:"Heat & Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Yoga" },
   { date:"2026-11-01", start:"10:00", end:"10:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
   { date:"2026-11-01", start:"11:00", end:"11:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"JoJo", lang:"ENG", type:"Reformer Pilates" },
-  { date:"2026-11-01", start:"15:00", end:"16:00", studio:"Studio 85 Biebrich", name:"Strength: Sculpt (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Strength" }
+  { date:"2026-11-01", start:"15:00", end:"16:00", studio:"Studio 85 Biebrich", name:"Strength: Sculpt (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Strength" },
+  { date:"2026-11-02", start:"17:00", end:"17:50", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Strength" },
+  { date:"2026-11-02", start:"18:00", end:"19:00", studio:"Studio 85 Hochheim", name:"Pilates: Power (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Pilates" },
+  { date:"2026-11-02", start:"20:00", end:"21:30", studio:"Balance Yoga Mainz", name:"Advanced Asana Flow (engl.)", level:"Advanced", teacher:"Taisiia R.", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-03", start:"10:00", end:"11:15", studio:"Studio 85 Hochheim", name:"Power & Balance (ENG)", level:"Intermediate", teacher:"Andi", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-03", start:"18:30", end:"19:30", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed", type:"Yoga" },
+  { date:"2026-11-04", start:"10:00", end:"11:15", studio:"Studio 85 Biebrich", name:"Strength & Balance Yoga (ENG)", level:"All levels", teacher:"Milena", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-04", start:"18:00", end:"19:15", studio:"Yogaplus Mainz", name:"Next Level Flow (engl.)", level:"Advanced", teacher:"Maja", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-05", start:"09:10", end:"10:00", studio:"Studio 85 Biebrich", name:"Reformer: Pre- & Postnatal (DE/ENG)", level:"All levels", teacher:"Mariin", lang:"DE/ENG", type:"Reformer Pilates" },
+  { date:"2026-11-05", start:"10:00", end:"11:30", studio:"Studio 85 Biebrich", name:"Yin & Yang (DE/ENG)", level:"All levels", teacher:"Laura Muenzel", lang:"DE/ENG", type:"Yoga" },
+  { date:"2026-11-05", start:"18:00", end:"19:00", studio:"PRAXYS", name:"Vinyasa", level:"", teacher:"", lang:"English not confirmed", type:"Yoga" },
+  { date:"2026-11-05", start:"19:30", end:"20:45", studio:"Balance Yoga Mainz", name:"Vinyasa Yoga (engl.)", level:"Intermediate", teacher:"Anni A.", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-06", start:"09:30", end:"10:30", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Strength" },
+  { date:"2026-11-06", start:"09:30", end:"11:00", studio:"Yogaplus Mainz", name:"Flow & Technik (engl.)", level:"All levels", teacher:"Maja", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-06", start:"12:00", end:"13:00", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Strength" },
+  { date:"2026-11-06", start:"18:00", end:"18:50", studio:"Balance Yoga Mainz", name:"Full Body Reformer (engl.)", level:"", teacher:"Alina H.", lang:"ENG", type:"Reformer Pilates" },
+  { date:"2026-11-07", start:"08:30", end:"09:30", studio:"Studio 85 Hochheim", name:"Strength: Fit Flow (ENG)", level:"Intermediate", teacher:"Anni", lang:"ENG", type:"Strength" },
+  { date:"2026-11-07", start:"09:15", end:"10:45", studio:"Balance Yoga Mainz", name:"Rocket Yoga (engl.)", level:"Advanced", teacher:"Alicia Su.", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-07", start:"10:00", end:"11:00", studio:"Studio 85 Hochheim", name:"Pilates: Align (ENG)", level:"All levels", teacher:"Anni", lang:"ENG", type:"Pilates" },
+  { date:"2026-11-08", start:"09:30", end:"10:45", studio:"Studio 85 Biebrich", name:"Heat & Flow (ENG)", level:"Intermediate", teacher:"Bridget", lang:"ENG", type:"Yoga" },
+  { date:"2026-11-08", start:"10:00", end:"10:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"Nina", lang:"ENG", type:"Reformer Pilates" },
+  { date:"2026-11-08", start:"11:00", end:"11:50", studio:"Studio 85 Biebrich", name:"Reformer: Power (ENG)", level:"Advanced", teacher:"Nina", lang:"ENG", type:"Reformer Pilates" },
+  { date:"2026-11-08", start:"15:00", end:"16:00", studio:"Studio 85 Biebrich", name:"Strength: Sculpt (ENG)", level:"Intermediate", teacher:"Milena", lang:"ENG", type:"Strength" },
+  { date:"2026-11-08", start:"16:30", end:"18:00", studio:"Yogaplus Mainz", name:"Flow & Restorative (engl.)", level:"All levels", teacher:"Maja", lang:"ENG", type:"Yoga" }
 ];
 /* ======================== END OF DATA ================================ */
 
